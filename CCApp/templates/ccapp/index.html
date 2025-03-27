@@ -55,6 +55,25 @@
 
         </div>
 
+        <div class="row justify-content-center mt-4">
+
+            <div class="col-md-6 text-center">
+
+                <h5>Calorie Goal</h5>
+
+                <div class="progress w-100" style="height: 25px;">
+
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 0%;"
+                        aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
         <div class="container mt-4">
 
             <div class="row justify-content-center">
@@ -100,6 +119,16 @@
 
                                     {% endfor %}
 
+                                    <tr>
+
+                                        <td id="total"><b>Total</b></td>
+                                        <td id="totalCarbs"></td>
+                                        <td id="totalProtein"></td>
+                                        <td id="totalFats"></td>
+                                        <td id="totalCalories"></td>
+
+                                    </tr>
+
                                 </tbody>
 
                             </table>
@@ -115,6 +144,35 @@
         </div>
 
     </div>
+
+    <script>
+
+        var table = document.getElementById('table');
+
+        var Carbs = 0, Protein = 0, Fats = 0, Calories = 0;
+
+        for (var i = 1; i < table.rows.length - 1; i++) {
+
+            Carbs += parseFloat(table.rows[i].cells[1].innerHTML);
+
+            Protein += parseFloat(table.rows[i].cells[2].innerHTML);
+
+            Fats += parseFloat(table.rows[i].cells[3].innerHTML);
+
+            Calories += parseFloat(table.rows[i].cells[4].innerHTML);
+
+        }
+
+        document.getElementById('totalCarbs').innerHTML = '<b>' + Carbs.toFixed(2) + '</b>';
+        document.getElementById('totalProtein').innerHTML = '<b>' + Protein.toFixed(2) + '</b>';
+        document.getElementById('totalFats').innerHTML = '<b>' + Fats.toFixed(2) + '</b>';
+        document.getElementById('totalCalories').innerHTML = '<b>' + Calories.toFixed(2) + '</b>';
+
+        var calpercentage = (Calories / 2000) * 100;
+        document.getElementsByClassName('progress-bar')[0].setAttribute('style', 'width: ' + calpercentage + '%;');
+
+
+    </script>
 
 </body>
 

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Food , Consume
+from .models import Food, Consume
 # Create your views here.
 
 
@@ -29,6 +29,5 @@ def index(request):
     consumed_food = Consume.objects.filter(user=request.user)
 
     context = {'foods': foods, 'consumed_food': consumed_food}
-
 
     return render(request, 'ccapp/index.html', context)
