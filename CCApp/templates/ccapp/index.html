@@ -25,13 +25,15 @@
 
                     <h4 class="text-center mb-3">Select Your Food</h4>
 
-                    <form>
+                    <form method="post">
+
+                        {% csrf_token %}
 
                         <div class="mb-3">
 
                             <label for="food" class="form-label">Choose a Food Item:</label>
 
-                            <select name="food" id="food" class="form-select">
+                            <select name="food_consumed" id="food_consumed" class="form-select">
 
                                 {% for food in foods %}
 
@@ -43,7 +45,7 @@
 
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-100">Submit</button>
+                        <button type="submit" class="btn btn-primary w-100">Add</button>
 
                     </form>
 
@@ -53,7 +55,19 @@
 
         </div>
 
+        {% for item in consumed_food %}
+
+        {{ item.food_consumed.name }} ---->
+        {{ item.food_consumed.carbs }} ---->
+        {{ item.food_consumed.protein }} ---->
+        {{ item.food_consumed.fats }} ---->
+        {{ item.food_consumed.calories }} <br>
+
+        {% endfor %}
+
     </div>
+
+
 
 </body>
 
